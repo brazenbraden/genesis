@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Installing ranger.."
+
+sudo apt-get update
+sudo apt-get install -y ranger
+
+mkdir -p ~/.config/ranger
+
+ln -s ~/genesis/configs/ranger/ ~/.config/ranger/
+
+echo "alias r=ranger" >> ~/.zshrc

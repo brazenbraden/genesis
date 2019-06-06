@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Installing zsh.."
+
+sudo apt-get update
+sudo apt-get install -y zsh
+
+if [ ! -d ~/.oh-my-zsh ]; then
+   # Install oh-my-zsh
+  echo ""
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+rm ~/.zshrc
+
+ln -s ~/genesis/configs/.zshrc ~/.zshrc
+
+exec zsh

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo "Installing docker.."
+
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+user = whoami
+sudo usermod -aG docker $user
+
+echo "Installing docker-compose.."
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# must find the terminal config (.bashrc or .zshrc etc)
+# maybe ask at the beginning with a prompt?
+terminal_config=~/.zshrc
+echo "DOCKER CONFIGS" >> $terminal_config
+echo "-------------------" >> $terminal_config
+echo 'alias dc=docker-compose' >> $terminal_config
+echo 'alias docker_prune="docker rmi $(docker images --filter 'dangling=true' -q --no-trunc)"' >> $terminal_config
+echo "-------------------" >> $terminal_config
+
