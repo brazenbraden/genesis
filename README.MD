@@ -12,3 +12,5 @@ Create a user and give them the correct persmissions
 `useradd -m username` (some user configuration will follow)
 `usermod -aG sudo username` (allow the user to run sudo commands)
 su - username
+
+sausage
