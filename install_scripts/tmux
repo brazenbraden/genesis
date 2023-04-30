@@ -1,0 +1,11 @@
+#!/bin/bash
+
+rm  ~/.tmux.conf
+rm -rf ~/.tmux
+
+sudo apt-get update -y
+sudo apt-get install -y tmux
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+ln -s ~/genesis/configs/.tmux.conf ~/.tmux.conf

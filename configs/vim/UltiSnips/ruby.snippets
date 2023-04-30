@@ -1,0 +1,52 @@
+snippet fsl "Frozen string literal" b
+# frozen_string_literal: true
+
+endsnippet
+
+snippet mod "New module definition" b
+module ${1:MyModule}
+	$2
+end
+endsnippet
+
+snippet class "New class definition" b
+class ${1:MyClass}
+	def initialize(${2:*args})
+		$3
+	end
+end
+
+endsnippet
+
+snippet desc "RSpec describe block"
+describe "$1" do
+	${2:${VISUAL:# assertions}}
+end
+endsnippet
+
+snippet context "RSpec context block"
+context "$1" do
+	${2:${VISUAL:# assertions}}
+end
+endsnippet
+
+snippet it "RSpec it block" b
+it "$1" do
+	${2:${VISUAL:# assertion}}
+end
+endsnippet
+
+snippet spec "RSpec specify block" b
+specify { expect($1).to $2 }
+endsnippet
+
+snippet expect "RSpec expect block" b
+expect(${1:object}).to $2
+endsnippet
+
+snippet def "Ruby define method block" b
+def ${1:method}(${2:*args})
+	${3:${VISUAL}}
+end
+
+endsnippet

@@ -1,0 +1,4 @@
+.DS_Store
+/configs/vim/plugged
+/notes
+/configs/zsh/.zshrc.*

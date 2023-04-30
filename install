@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo "Setting up environment..."
+echo ""
+echo "Installing dependencies"
+sudo apt-get update
+sudo apt-get install -y build-essential software-properties-common curl cmake git
+
+install_service() {
+  echo "Installing $1.."
+  ./install_scripts/$1
+  echo "$1 installed!"
+
+  echo $'\n\n'
+}
+
+install_service docker
+# install_service vim
+install_service nvim
+install_service tmux
+# install_service ranger
+# install_service rbenv
+install_service zsh
+
+# Copy across my gitconfig
+rm -f $HOME/.gitconfig && ln -s $(pwd)/configs/.gitconfig $HOME/.gitconfig
+
+# Copy my scripts folder (maybe symlink this instead)
+#cp -R ./.scripts ~/

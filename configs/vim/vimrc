@@ -1,0 +1,14 @@
+set nocompatible
+
+let g:hostname = substitute(system('hostname'), "\n", "", "")
+let g:is_nixos = system('uname -a') =~ "NixOS"
+let g:lightweight = g:hostname == "nixums"
+
+" let g:python_host_prog = system('which python')
+" let g:python3_host_prog=  system('which python3')
+let g:python_host_prog = "/usr/bin/python"
+let g:python3_host_prog=  "/usr/bin/python3"
+
+set runtimepath^=~/.config/nvim
+
+source $HOME/.vim/layer/all-packages.vim

@@ -1,0 +1,71 @@
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[alias]
+  f = fetch
+  fpull = pull --rebase
+  ffwd = !sh -c 'git fetch && git rb origin/${1:-master}' #&& git push -f origin $(git rev-parse --abbrev-ref HEAD)' -
+  st = status
+  ci = commit
+  cia = commit --amend
+  co = checkout
+  br = branch
+  sb = show-branch
+  cp = cherry-pick
+  staged = diff --cached
+  rb = rebase
+  rbc = rebase --continue
+  rbs = rebase --skip
+  rba = rebase --abort
+  rl = reflog
+  rs = remote show
+  rt = remote
+  ru = remote update
+  rp = remote prune origin
+  sm = submodule
+  lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+  df = difftool
+  fff = flow feature finish --keepremote
+  fbf = flow bugfix finish --keepremote
+  pop = stash pop
+  rvt = "!git co HEAD -- $1"
+  branch-name = "!git rev-parse --abbrev-ref HEAD"
+  publish = "!git push -u origin $(git branch-name)"
+  fpush = "!git push -f origin $(git branch-name)"
+  rbod = !sh -c 'git fetch && git rb origin/develop'
+  irbod = !sh -c 'git fetch && git rb -i origin/develop'
+  rbom = !sh -c 'git fetch && git rb origin/master'
+  irbom = !sh -c 'git fetch && git rb -i origin/master'
+  brl = "!git branch --list | awk '{print $1}'"
+  rename = !sh -c 'git branch -m ${1}'
+  ; destroy = !sh -c "git branch -d '{print $1}' && git push origin --delete '{print $1}'"
+  destroy = !sh -c "git branch -d ${1}"
+  ; rename = "!sh -c 'git branch -m {print $1} && git push origin -u {print $1} && git push origin --delete $(git branch-name)'"
+
+[user]
+  name = Sausage King
+  email = sausage@example.com
+
+[core]
+	excludesFile = ~/.gitignore
+[commit]
+	template = 
+	verbose = false

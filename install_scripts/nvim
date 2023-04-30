@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Installing neovim.."
+
+rm -rf ~/.config/nvim
+rm ~/.vimrc
+rm ~/.vim
+
+sudo apt-get install software-properties-common
+
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install -y neovim python-dev python3-dev python3-pip
+
+pip3 install --user neovim
+
+ln -s $(pwd)/configs/nvim $HOME/.config/

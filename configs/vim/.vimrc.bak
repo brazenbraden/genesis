@@ -1,0 +1,320 @@
+" TODO: Things to look into..
+" stupid-EasyMotion plugin
+" Learn multicursor plugin
+"
+" # what does this do?
+" set title
+" set autoread
+" set autowrite
+" set lazyredraw
+" set linebreak
+" set list
+" set ttyfast
+" set showcmd
+" set shomode
+" set modelines=0
+
+let using_neovim = has('nvim')
+let using_vim = !using_neovim
+
+" Call the .vimrc.plug file
+if filereadable(expand("~/.config/nvim/.plug.vim"))
+  source ~/.config/nvim/.plug.vim
+endif
+
+set showmatch
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set ignorecase
+set smartcase
+set termguicolors
+set scrolloff=5
+set number relativenumber
+set foldmethod=syntax
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+set autoindent
+set noswapfile
+set encoding=utf-8
+set splitbelow
+set splitright
+set history=1000
+set spelllang=eng
+set wildmode=longest,list,full
+filetype plugin indent on
+
+" Save when window loses focus
+au FocusLost * :silent! wall
+" Autoresize windows when vim is resized
+au VimResized * :wincmd =
+" Return to the same line when rediting a file previously
+
+" Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \     execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+
+let mapleader = "\\"
+
+" autocmd BufEnter * silent! lcd %:p:h
+" Delete all trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+" Set tabs for yaml files to two spaces
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Automatically reload vimrc when changes are saved
+" autocmd BufWritePost init.vim source $MYVIMRC
+
+" dracula theme settings
+syntax on
+" colorscheme dracula
+
+" NERDTree settings && NERDCommenter settings
+autocmd StdinReadPre * let s:std_in=1
+" open NERDTree by default if no file supplied to vim
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" open NERDTree if opening vim with a folder
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" close vim if nothing but NERDTree is open with q!
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Ctrl + R opens NERDTree to the file.
+" TODO: Remap this because it overwrites vim redo
+map <Leader>r :NERDTreeFind<CR>
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+" Remap open files in NERDTree with horizontal split
+" let g:NERDTreeMapOpenSplit='h'
+" Remap open files in NERDTree with vertical split
+" let gNERDTreeMapOpenVSplit='s'
+" Ctrl + / to comment out code
+let g:NERDCreateDefaultMappings = 0
+let g:NERDTreeToggleCheckAllLines = 0
+let g:NERDToggleCheckAllLines = 0
+nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+" --------------------------
+
+" vim-multiple-cursors settings
+" TODO: Map this to Leader + d maybe?
+" let g:multi_cursor_start_word_key = '<C-d>'
+" let g:multi_cursor_start_key = '<C-d>'
+" let g:multi_cursor_next_key = '<C-d>'
+let g:multi_cursor_exit_from_visual_mode = 1
+"Cannot yet map ctrl+shift+g to go back. Must investigate."
+"https://stackoverflow.com/questions/1506764/how-to-map-ctrla-and-ctrlshifta-differently"
+
+" incseach settings
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" escape clears highlight after search
+map <esc> :noh<cr>
+
+" Write all buggers before navigating from vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+" Disable tmux navigator when zooming the vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Custom key bindings
+" Disable arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" Ctrl + q escapes from insert mode (same as Esc)
+inoremap <C-q> <Esc>
+" Remap <ESC> to escape from NVIM :terminal
+tnoremap <C-q> <C-\><C-n>
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+nnoremap gc :split term://zsh<cr>
+" remapDCompactSexyComs = 1uo access vim menu quickly
+noremap ; :
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+" Leader + y to tank visual selection into + register
+vnoremap <Leader>y :'<,'> yank +<CR>
+" Toggle on and off IndentLines
+map<Leader>m :IndentLinesToggle<CR>
+" Maps Leader + p to replace current line with contents from yanked buffer
+nnoremap <Leader>p V"0p
+" Prevents accidental VISUAL + K which looks for man page for selected incase
+" you want to select up too quickly
+vnoremap K k
+" Shift + h takes you to the start of a line
+noremap H ^
+" Shift + l takes you to the end of the line
+noremap L g_
+" Fold everything except where you are focused
+nnoremap <Leader>z zMzvzz
+" Leader + ev to quickly edit vimrc in vertical split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Leader + ez to quickly edit zshrc in a vertical split
+nnoremap <Leader>ez :vsplit ~/.zshrc<cr>
+" Leader + et to quickly edit tmux.conf in a vertical split
+nnoremap <Leader>et :vsplit ~/.tmux.conf<cr>
+" Leader + sv to quickly source vimrc file
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+" Leader fc (format code) to format the file and return to last cursor
+" position
+nnoremap <Leader>fc gg=G``<CR>
+" Caps S splits the line to the next line at the cursor
+" (oppsite of caps J which joins lines into one)
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+" Panic button - scrambles text
+nnoremap <f9> mzggg?G`z
+
+" Configure Scratch Plugin
+" gs to open scratch
+let g:scratch_persistence_file = '/tmp/.scratch.vim'
+let g:scratch_insert_autohide = 0
+let g:scratch_filetype = "ruby"
+let g:scratch_autohide = 1
+
+" FZF Options -------------------------------------
+" If in a git directory, load files from root, else from current directory
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GFiles --exclude-standard --cached --others
+  endif
+endfun
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --smart-case --color "always"
+  \ -g "*.{js,jsx,json,php,md,css,scss,haml,erb,html,config,py,rb,conf}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
+  \  fzf#vim#with_preview({ 'dir': systemlist('git rev-parse --show-toplevel')[0] }),
+  \   <bang>0)
+
+" Map ff to fuzzy text search with rg and fzf
+map ff :Rg!<cr>
+map <C-p> :call FzfOmniFiles() <cr>
+" FZF Options End -----------------------------------
+
+" Map g + b to open FZF :Buffers
+map gb :Buffers <cr>
+
+" better ultisnip keys
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.config/nvim/UltiSnips"]
+" make YCM compatible with UltiSnips (user supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
+
+" vim-rspec config
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+
+" Don't display indentLine for help for NERDTree
+let g:indentLine_enabled = 1
+let g:indentLine_fileTypeExclude=['help']
+let g:indentLine_bufNameExclude=['NERD_tree.*']
+
+" vim-slime config
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+
+" Open file in ranger
+" let g:ranger_map_keys = 0
+" map <leader>fo :Ranger<CR>
+
+" Draw a grey line at the 79 character limit
+let &colorcolumn=join(range(81,999),",")
+let &colorcolumn="79,".join(range(400,999),",")
+" https://stackoverflow.com/questions/15283410/how-do-i-change-the-background-color-of-current-buffer-or-pane-in-vim
+" Dim inactive windows using 'colorcolumn' setting
+" This tends to slow down redrawing, but is very useful.
+" Based on https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
+" XXX: this will only work with lines containing text (i.e. not '~') from
+if exists('+colorcolumn')
+  function! s:DimInactiveWindows()
+    for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+      let l:range = ""
+      if i != winnr()
+        if &wrap
+         " HACK: when wrapping lines is enabled, we use the maximum number
+         " of columns getting highlighted. This might get calculated by
+         " looking for the longest visible line and using a multiple of
+         " winwidth().
+         let l:width=256 " max
+        else
+         let l:width=winwidth(i)
+        endif
+        let l:range = join(range(1, l:width), ',')
+      endif
+      call setwinvar(i, '&colorcolumn', l:range)
+    endfor
+  endfunction
+  augroup DimInactiveWindows
+    au!
+    au WinEnter * call s:DimInactiveWindows()
+    au WinEnter * set cursorline
+    au WinLeave * set nocursorline
+    " Draw a grey line at the 79 character limit
+    au WinEnter * let &colorcolumn=join(range(81,999),",")
+    au WinEnter * let &colorcolumn="79,".join(range(400,999),",")
+  augroup END
+endif
+
+" ALE config
+" let g:ale_linters = {
+" \   'javascript': ['prettier', 'eslint'],
+" \   'python': ['flake8', 'pylint']
+" \}
+" let g:ale_fixers = {
+" \   'javascript': ['prettier', 'eslint'],
+" \   'python': ['autopep8', 'yapf']
+" \}
+" let g:ale_fix_on_save = 1
+" :ALEToggle to enable or disable ALE linting
+"
+" PYTHON STUFF
+" nnoremap <Leader>rp :!python3 %:p<cr>
+
+" YouCompleteMe configuration
+" let g:ycm_python_interpreter_path = '/opt/anaconda3/envs/opencv/bin/python3'
+" let g:ycm_python_sys_path = []
+" let g:ycm_extra_conf_vim_data = [
+"   \  'g:ycm_python_interpreter_path',
+"   \  'g:ycm_python_sys_path'
+"   \]
+" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/global_extra_conf.py'
+
+if exists("$LANG")
+  let path = "~/.config/nvim/vim_components/." . $LANG . ".vim"
+  echo path
+  if filereadable(expand(path))
+    echo "path is readable!"
+    exec "source " . path
+  endif
+endif
+

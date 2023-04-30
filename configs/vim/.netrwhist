@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/bradenking/dev/bigsofa/pipeline'
+let g:netrw_dirhist_2='/Users/bradenking/Documents/genesis/configs/vim/autoload'
+let g:netrw_dirhist_1='/Users/bradenking/Documents/genesis/configs/vim'

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rm -rf ~/.config/nvim
+rm ~/.vimrc
+rm ~/.vim
+
+sudo apt-get update
+sudo apt-get install -y vim
+
+ln -s $(pwd)/configs/vim/ ~/.vim
+ln -s $(pwd)/configs/vim/vimrc ~/.vimrc
+
+echo "Post-install notes:"
+echo "--------------------"
+echo "run :PlugInstall when you first start vim"
+echo "Enjoy!"

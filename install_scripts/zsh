@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rm ~/.zshrc
+rm -rf ~/.oh-my-zsh
+
+sudo apt-get update
+sudo apt-get install -y zsh
+
+if [ ! -d ~/.oh-my-zsh ]; then
+  echo "Installing oh-my-zsh - ZSH CUSTOM IS: $ZSH_CUSTOM"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+rm ~/.zshrc
+ln -s $(pwd)/configs/zsh/zshrc ~/.zshrc
+source ~/.zshrc
