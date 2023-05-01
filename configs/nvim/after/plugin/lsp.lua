@@ -2,8 +2,7 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 -- local cmp_action = require('lsp-zero').cmp_action()
 
-local servers = { "lua_ls", "ruby_ls" }
-
+local servers = { "lua_ls", "solargraph" }
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
@@ -49,8 +48,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
--- TODO: Figure out how to get ruby lsp and completion working
--- require('lspconfig').ruby_ls.setup()
 
 lsp.setup()
 
