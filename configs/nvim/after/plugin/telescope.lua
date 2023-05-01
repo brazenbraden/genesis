@@ -3,7 +3,7 @@ local builtin = require('telescope.builtin')
 
 -- Default to find_files if not in a git directory
 vim.keymap.set('n', '<C-p>', function()
-  local opts = {} 
+  local opts = {}
   vim.fn.system('git rev-parse --is-inside-work-tree')
   if vim.v.shell_error == 0 then
     builtin.git_files(opts)
@@ -12,11 +12,7 @@ vim.keymap.set('n', '<C-p>', function()
   end
 end)
 
--- Fuzzy find text search
--- TODO: Change this to use FZF or something
-vim.keymap.set('n', '<leader>ff', function()
-  builtin.grep_string({search = vim.fn.input("Grep > ")});
-end)
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 
 require("telescope").setup({
   defaults = {

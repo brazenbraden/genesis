@@ -12,10 +12,10 @@ local options = {
   mouse = "",
   cursorline = true,
   hlsearch = true,
-
-  -- pt.foldmethod = syntax,
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
   foldnestmax = 10,
-  -- pt.nofoldenable = true,
+  foldenable = false,
   foldlevel = 10,
   autoindent = true,
   swapfile = false,
@@ -25,8 +25,9 @@ local options = {
   splitright = true,
   history = 1000,
   spelllang = "eng",
-  -- pt.wildmode=longest,list,full,
-  lazyredraw = true,   
+  wildmode = { "longest", "list", "full" },
+  lazyredraw = true,
+  completeopt = "menuone,noselect",
 }
 
 for k, v in pairs(options) do
@@ -34,8 +35,20 @@ for k, v in pairs(options) do
 end
 
 -- Autosave current file on FocusLost
+-- TODO: Do we even need these groups??
 local autosave = vim.api.nvim_create_augroup("AutoSave", { clear = true })
 vim.api.nvim_create_autocmd("FocusLost", { command = "silent! wall", group = autosave })
 
--- local cleartrailingspace = vim.api.nvim_create_augroup("TrailingSpace", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\s\+$//e", group = cleartrailingspace })
+local trailingspace = vim.api.nvim_create_augroup("TrailingSpace", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", { pattern = { "*" }, command = [[%s/\s\+$//e]], group = trailingspace })
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
