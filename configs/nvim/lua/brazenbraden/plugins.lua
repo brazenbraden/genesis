@@ -52,8 +52,8 @@ local plugins = {
   -- Ruby / RoR
   'vim-ruby/vim-ruby',
   'tpope/vim-rails',
-  'RRethy/nvim-treesitter-endwise',
-  'jgdavey/vim-blockle',
+  'RRethy/nvim-treesitter-endwise', -- auto end code blocks
+  'jgdavey/vim-blockle', -- swap between do and {} blocks
   'thoughtbot/vim-rspec',
   'tpope/vim-dispatch', -- spec runner
 
@@ -87,21 +87,20 @@ local plugins = {
     },
   },
 
-  'tpope/vim-surround',
-  'tpope/vim-repeat',
+  'tpope/vim-surround', -- easy manipulation of surrounding pairs
+  'tpope/vim-repeat', -- more power to the . operator
 
-  'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
+  'nvim-tree/nvim-tree.lua', -- file explorer
+  'nvim-tree/nvim-web-devicons', -- pretty web icon pack
 
-  'windwp/nvim-autopairs',
-
-  'numToStr/Comment.nvim',
+  'windwp/nvim-autopairs', -- auto-closing syntax pairs
+  'numToStr/Comment.nvim', -- code commenter
   'jpalardy/vim-slime', -- vim to tmux
-  'kshenoy/vim-signature',
-  'djoshea/vim-autoread',
-  'Yggdroot/indentLine',
+  'kshenoy/vim-signature', -- show marks in sidebar
+  'djoshea/vim-autoread', -- reload buffers on file changes
+  'Yggdroot/indentLine', -- display lines on tab indents
 
-  'aserowy/tmux.nvim',
+  'aserowy/tmux.nvim', -- simple navigation between vim and tmux
 
   -- snippets
   'dcampos/nvim-snippy',

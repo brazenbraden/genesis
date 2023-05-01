@@ -1,8 +1,9 @@
 local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+-- local cmp_action = require('lsp-zero').cmp_action()
 
 local servers = { "lua_ls", "ruby_ls" }
+
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
@@ -16,6 +17,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  -- Rename all occurances of variable ?
   keymap('<leader>hn', vim.lsp.buf.rename, '[R]e[n]ame') -- this isnt working?
 
   keymap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
