@@ -42,7 +42,10 @@ keymap("n", "<Leader>dd", "<S-O>binding.pry<Esc>") -- on line above
 
 keymap("n", "<Esc>", ":noh<CR>") -- clear search highlighting on esc
 
-keymap("n", "<F9>", "mzggg?G`z")
+keymap("n", "<F9>", "mzggg?G`z") -- hide your code from prying eyes!
+
+keymap("n", "gc", ":split term://zsh<CR>i", { desc = "[G]o to [T]erminal in horizontal split" }) -- open terminal
+keymap("t", "<C-q>", "<C-\\><C-n>") -- exit insert mode in terminal
 
 -- INSERT mode keymaps
 -- Ctrl + q escapes back to NORMAL mode (esc button too far for my fingers)
