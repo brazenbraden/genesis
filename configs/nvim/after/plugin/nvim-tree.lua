@@ -6,7 +6,6 @@ vim.opt.termguicolors = true
 -- keymappings
 vim.keymap.set("n", "<leader>r", ":NvimTreeFindFile<CR>")
 vim.keymap.set("n", "<leader>R", ":NvimTreeClose<CR>")
-vim.keymap.set("n", "S", "nvim-tree-api.node.open.horizontal()")
 
 require("nvim-tree").setup({
   sort_by = "case_sensitive",

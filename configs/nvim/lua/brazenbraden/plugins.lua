@@ -74,18 +74,7 @@ local plugins = {
     },
   },
 
-  { -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
+  'nvim-lualine/lualine.nvim',
 
   'tpope/vim-surround', -- easy manipulation of surrounding pairs
   'tpope/vim-repeat', -- more power to the . operator
@@ -107,7 +96,7 @@ local plugins = {
   'dcampos/cmp-snippy',
 
   -- colorscheme
-  'rmehri01/onenord.nvim',
+  'folke/tokyonight.nvim',
 }
 
 local opts = {}

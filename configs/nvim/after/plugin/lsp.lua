@@ -54,6 +54,7 @@ lsp.setup()
 cmp.setup({
   mapping = {
     ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    ['<Enter>'] = cmp.mapping.confirm({select = true}),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),

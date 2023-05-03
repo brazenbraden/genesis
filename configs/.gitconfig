@@ -67,5 +67,4 @@
 [core]
 	excludesFile = ~/.gitignore
 [commit]
-	template = 
 	verbose = false

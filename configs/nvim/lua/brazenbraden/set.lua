@@ -52,3 +52,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- TODO: extract this to a utils file or something
+-- TODO: Investigate why this isnt working properly
+vim.keymap.set("n", "<Leader>ln", ":lua ToggleLineDecoration()<CR>")
+function ToggleLineDecoration()
+  if vim.opt.number == true then
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+    vim.cmd("IndentLinesDisable")
+    vim.cmd("Gitsigns toggle_signs")
+  else
+    vim.opt.number = true
+    vim.opt.relativenumber = true
+    vim.cmd("IndentLinesEnable")
+    vim.cmd("Gitsigns toggle_signs")
+  end
+end
