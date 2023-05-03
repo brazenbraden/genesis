@@ -47,6 +47,12 @@ keymap("n", "<F9>", "mzggg?G`z") -- hide your code from prying eyes!
 keymap("n", "gc", ":split term://zsh<CR>i", { desc = "[G]o to [T]erminal in horizontal split" }) -- open terminal
 keymap("t", "<C-q>", "<C-\\><C-n>") -- exit insert mode in terminal
 
+-- Tab shortcuts
+keymap("n", "<S-T>", ":tabnew<CR>")
+keymap("n", "<C-Left>", ":tabprev<CR>")
+keymap("n", "<C-Right>", ":tabnext<CR>")
+keymap("n", "<S-Q>", ":tabclose<CR>")
+
 -- INSERT mode keymaps
 -- Ctrl + q escapes back to NORMAL mode (esc button too far for my fingers)
 keymap("i", "<C-q>", "<Esc>")
