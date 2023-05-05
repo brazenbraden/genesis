@@ -83,6 +83,7 @@ local plugins = {
   'nvim-tree/nvim-web-devicons', -- pretty web icon pack
 
   'windwp/nvim-autopairs', -- auto-closing syntax pairs
+  'ggandor/leap.nvim'
   'numToStr/Comment.nvim', -- code commenter
   'jpalardy/vim-slime', -- vim to tmux
   'kshenoy/vim-signature', -- show marks in sidebar
