@@ -81,6 +81,10 @@ alias vim="nvim"
 alias vi="nvim"
 alias tm="~/.bin/tm"
 alias mux="tmuxinator"
+alias dev="cd ~/dev"
+
+# sudo apt install bat
+alias cat="batcat"
 
 source ~/genesis/configs/zsh/.zshrc.bigsofa
 source ~/genesis/configs/zsh/.zshrc.jugglebee
