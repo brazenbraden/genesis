@@ -12,14 +12,23 @@ vim.keymap.set('n', '<C-p>', function()
   end
 end)
 
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').live_grep)
+
 vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
+
+vim.keymap.set('n', '<leader>gb', function()
+  require('telescope.builtin').buffers(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end)
+
+vim.keymap.set('n', '<leader>mm', require('telescope.builtin').marks)
 
 require("telescope").setup({
   defaults = {
