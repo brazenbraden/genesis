@@ -52,6 +52,16 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()
 
 cmp.setup({
+  -- snippet = {
+  --   expand = function(args)
+  --     require 'snippy'.expand_snippet(args.body)
+  --   end
+  -- },
+  --
+  -- sources = {
+  --   { name = 'snippy' }
+  -- },
+
   mapping = {
     ['<Tab>'] = cmp.mapping.confirm({select = true}),
     ['<Enter>'] = cmp.mapping.confirm({select = true}),
