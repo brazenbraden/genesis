@@ -2,7 +2,9 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 -- local cmp_action = require('lsp-zero').cmp_action()
 
-local servers = { "lua_ls", "solargraph" }
+require("mason").setup({})
+
+local servers = { "lua_ls", "ruby_ls", "solargraph" }
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
@@ -34,20 +36,18 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
+end)
+
 for _, lsp in ipairs(servers) do
   require("lspconfig")[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
   })
 end
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-end)
-
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
@@ -63,8 +63,8 @@ cmp.setup({
   -- },
 
   mapping = {
-    ['<Tab>'] = cmp.mapping.confirm({select = true}),
-    ['<Enter>'] = cmp.mapping.confirm({select = true}),
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<Enter>'] = cmp.mapping.confirm({ select = true }),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),

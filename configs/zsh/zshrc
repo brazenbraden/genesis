@@ -61,10 +61,11 @@ alias weather="curl wttr.in"
 alias reload="clear && omz reload"
 alias cls="clear"
 alias dc="docker compose"
-alias ll="ls -lah"
+alias ll="ls -lAh"
 
 export PATH="$PATH:/opt/yarn-1.13.0/bin:/usr/local/bin:/usr/local/sbin"
 export PATH=$PATH:/usr/local/Cellar/node/13.6.0/bin
+. "$HOME/.cargo/env"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"

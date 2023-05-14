@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
@@ -33,19 +34,19 @@ local plugins = {
     branch = 'v2.x',
     dependencies = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
+      { 'neovim/nvim-lspconfig' },
       {
         'williamboman/mason.nvim',
         build = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+      { 'hrsh7th/nvim-cmp' },     -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'L3MON4D3/LuaSnip' },     -- Required
     }
   },
 
@@ -53,14 +54,15 @@ local plugins = {
   'vim-ruby/vim-ruby',
   'tpope/vim-rails',
   'RRethy/nvim-treesitter-endwise', -- auto end code blocks
-  'jgdavey/vim-blockle', -- swap between do and {} blocks
+  'jgdavey/vim-blockle',            -- swap between do and {} blocks
   'thoughtbot/vim-rspec',
-  'tpope/vim-dispatch', -- spec runner
+  'tpope/vim-dispatch',             -- spec runner
 
   -- Git
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  {
+    -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -76,21 +78,21 @@ local plugins = {
 
   'nvim-lualine/lualine.nvim',
 
-  'tpope/vim-surround', -- easy manipulation of surrounding pairs
-  'tpope/vim-repeat', -- more power to the . operator
+  'tpope/vim-surround',          -- easy manipulation of surrounding pairs
+  'tpope/vim-repeat',            -- more power to the . operator
 
-  'nvim-tree/nvim-tree.lua', -- file explorer
+  'nvim-tree/nvim-tree.lua',     -- file explorer
   'nvim-tree/nvim-web-devicons', -- pretty web icon pack
 
-  'windwp/nvim-autopairs', -- auto-closing syntax pairs
-  'ggandor/leap.nvim', -- quickly hop around
-  'numToStr/Comment.nvim', -- code commenter
-  'jpalardy/vim-slime', -- vim to tmux
-  'kshenoy/vim-signature', -- show marks in sidebar
-  'djoshea/vim-autoread', -- reload buffers on file changes
-  'Yggdroot/indentLine', -- display lines on tab indents
+  'windwp/nvim-autopairs',       -- auto-closing syntax pairs
+  'ggandor/leap.nvim',           -- quickly hop around
+  'numToStr/Comment.nvim',       -- code commenter
+  'jpalardy/vim-slime',          -- vim to tmux
+  'kshenoy/vim-signature',       -- show marks in sidebar
+  'djoshea/vim-autoread',        -- reload buffers on file changes
+  'Yggdroot/indentLine',         -- display lines on tab indents
 
-  'aserowy/tmux.nvim', -- simple navigation between vim and tmux
+  'aserowy/tmux.nvim',           -- simple navigation between vim and tmux
 
   -- snippets
   'dcampos/nvim-snippy',
