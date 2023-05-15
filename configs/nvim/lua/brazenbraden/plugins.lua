@@ -46,7 +46,6 @@ local plugins = {
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },     -- Required
       { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' },     -- Required
     }
   },
 
@@ -95,8 +94,11 @@ local plugins = {
   'aserowy/tmux.nvim',           -- simple navigation between vim and tmux
 
   -- snippets
-  'dcampos/nvim-snippy',
-  'dcampos/cmp-snippy',
+  {
+    'L3MON4D3/LuaSnip',
+    build = "make install_jsregexp"
+  },
+  'saadparwaiz1/cmp_luasnip',
 
   -- colorscheme
   'folke/tokyonight.nvim',

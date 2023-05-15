@@ -1,70 +1,19 @@
-local lsp = require('lsp-zero').preset({})
-local cmp = require('cmp')
--- local cmp_action = require('lsp-zero').cmp_action()
-
-require("mason").setup({})
-
-local servers = { "lua_ls", "ruby_ls", "solargraph" }
-require("mason-lspconfig").setup({
-  ensure_installed = servers,
+local lsp = require('lsp-zero').preset({
+  manage_nvim_cmp = {
+    set_sources = "recommended"
+  }
 })
-
-local on_attach = function(_, bufnr)
-  local keymap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  -- Rename all occurances of variable ?
-  keymap('<leader>hn', vim.lsp.buf.rename, '[R]e[n]ame') -- this isnt working?
-
-  keymap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  keymap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  keymap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-
-  keymap('<leader>k', vim.lsp.buf.hover, 'Hover Documentation')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-end)
-
-for _, lsp in ipairs(servers) do
-  require("lspconfig")[lsp].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
+local cmp = require('cmp')
 
 lsp.setup()
 
 cmp.setup({
-  -- snippet = {
-  --   expand = function(args)
-  --     require 'snippy'.expand_snippet(args.body)
-  --   end
-  -- },
-  --
-  -- sources = {
-  --   { name = 'snippy' }
-  -- },
-
   mapping = {
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
+
+    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item()),
+    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item()),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),

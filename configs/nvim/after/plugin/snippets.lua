@@ -1,11 +1,1 @@
-require("snippy").setup({
-  scopes = {
-    ruby = { "_" }
-  },
-  mappings = {
-    is = {
-      ['<Tab>'] = 'expand_or_advance',
-      ["<S-Tab>"] = "previous",
-    }
-  }
-})
+require("luasnip.loaders.from_snipmate").lazy_load()
