@@ -59,6 +59,7 @@
   ; destroy = !sh -c "git branch -d '{print $1}' && git push origin --delete '{print $1}'"
   destroy = !sh -c "git branch -d ${1}"
   ; rename = "!sh -c 'git branch -m {print $1} && git push origin -u {print $1} && git push origin --delete $(git branch-name)'"
+  stag = !~/.git_scripts/stag.sh
 
 [user]
   name = Sausage King

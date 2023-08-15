@@ -25,5 +25,8 @@ install_service zsh
 # Copy across my gitconfig
 rm -f $HOME/.gitconfig && ln -s $(pwd)/configs/.gitconfig $HOME/.gitconfig
 
+# Copy git scripts
+ln $(pwd)/configs/git $HOME/.git_scripts
+
 # Copy my scripts folder (maybe symlink this instead)
 #cp -R ./.scripts ~/
