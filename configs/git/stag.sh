@@ -1,25 +1,25 @@
 #!/bin/bash
 
+staging_branch=staging
+
 # Get current branch name
 current_branch=`git branch --show-current`
-echo "current branch name is: ${current_branch}"
 
 # Create copy branch name
 copy_branch="${current_branch}_copy_for_staging"
-echo "copy branch name is: ${copy_branch}"
 
 # Create the copy branch
-git branch -C ${current_branch} ${copy_branch}
+git checkout -b ${copy_branch}
 
 # Check out staging branch and update
-git fetch && git checkout staging && git pull
+git fetch && git checkout -q ${staging_branch} && git pull --force -q
 
 # Merge the copy branch
-if git merge ${copy_branch}; then
-  echo "Branch merged to staging successfully"
-
+if git merge --no-ff ${copy_branch}; then
   # Push staging back up to origin
-  # git push
+
+  git push
+  echo "Branch merged to staging successfully"
 else
   git merge --abort
 
@@ -30,7 +30,7 @@ else
 fi
 
 # Checkout original branch
-git checkout ${current_branch}
+git checkout -q ${current_branch}
 
 # Delete copy branch
-git branch -D ${copy_branch}
+git branch -D -q ${copy_branch}
