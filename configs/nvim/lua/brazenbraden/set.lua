@@ -4,6 +4,7 @@ local options = {
   expandtab = true,
   ignorecase = true,
   smartcase = true,
+  linebreak = true,
   termguicolors=true,
   scrolloff = 8,
   number = true,
@@ -28,6 +29,7 @@ local options = {
   wildmode = { "longest", "list", "full" },
   lazyredraw = true,
   completeopt = "menuone,noselect",
+  conceallevel = 0,
 }
 
 for k, v in pairs(options) do
