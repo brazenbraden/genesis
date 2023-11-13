@@ -42,7 +42,15 @@ local autosave = vim.api.nvim_create_augroup("AutoSave", { clear = true })
 vim.api.nvim_create_autocmd("FocusLost", { command = "silent! wall", group = autosave })
 
 local trailingspace = vim.api.nvim_create_augroup("TrailingSpace", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", { pattern = { "*" }, command = [[%s/\s\+$//e]], group = trailingspace })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*" },
+  callback = function(ev)
+    save_cursor = vim.fn.getpos(".")
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setpos(".", save_cursor)
+  end,
+  group = trailingspace
+})
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
