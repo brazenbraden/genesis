@@ -12,7 +12,7 @@ require("nvim-tree").setup({
   renderer = {
     group_empty = true,
     highlight_opened_files = "none",
-    root_folder_label = false,
+    root_folder_label = true,
   },
   filters = {
     dotfiles = true,
