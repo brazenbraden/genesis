@@ -1,6 +1,6 @@
 #!/bin/bash
 
-staging_branch=staging
+staging_branch=kallidus-staging
 
 # Get current branch name
 current_branch=`git branch --show-current`

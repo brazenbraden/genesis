@@ -83,6 +83,7 @@ alias vi="nvim"
 alias tm="~/.bin/tm"
 alias mux="tmuxinator"
 alias dev="cd ~/dev"
+alias cop="gh copilot explain"
 
 # sudo apt install bat
 alias cat="batcat"

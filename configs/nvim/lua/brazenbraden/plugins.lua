@@ -58,6 +58,7 @@ local plugins = {
   'tpope/vim-dispatch',             -- spec runner
 
   -- Git
+  'github/copilot.vim',
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   {

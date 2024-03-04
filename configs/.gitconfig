@@ -49,7 +49,7 @@
   rvt = "!git co HEAD -- $1"
   branch-name = "!git rev-parse --abbrev-ref HEAD"
   publish = "!git push -u origin $(git branch-name)"
-  fpush = "!git push -f origin $(git branch-name)"
+  fpush = "!git push --force-with-lease origin $(git branch-name)"
   rbod = !sh -c 'git fetch && git rb origin/develop'
   irbod = !sh -c 'git fetch && git rb -i origin/develop'
   rbom = !sh -c 'git fetch && git rb origin/master'
@@ -60,6 +60,9 @@
   destroy = !sh -c "git branch -d ${1}"
   ; rename = "!sh -c 'git branch -m {print $1} && git push origin -u {print $1} && git push origin --delete $(git branch-name)'"
   stag = !~/.git_scripts/stag.sh
+  kalstag = !~/.git_scripts/kalstag.sh
+  uatstag = !~/.git_scripts/uatstag.sh
+  shrstag = !~/.git_scripts/shrstag.sh
 
 [user]
   name = Sausage King

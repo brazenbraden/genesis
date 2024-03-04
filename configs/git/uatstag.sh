@@ -1,6 +1,6 @@
 #!/bin/bash
 
-staging_branch=staging
+staging_branch=uat
 
 # Get current branch name
 current_branch=`git branch --show-current`
