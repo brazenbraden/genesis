@@ -70,5 +70,6 @@
 
 [core]
 	excludesFile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 [commit]
 	verbose = false

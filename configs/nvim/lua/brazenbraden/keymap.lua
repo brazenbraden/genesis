@@ -54,3 +54,6 @@ keymap("n", "<S-Q>", ":tabclose<CR>")
 -- INSERT mode keymaps
 -- Ctrl + q escapes back to NORMAL mode (esc button too far for my fingers)
 keymap("i", "<C-q>", "<Esc>")
+
+-- Display git history for ruby method under the cursor
+keymap("n", "gl", ":G log -L :<C-r><C-w>:%:p<CR>")

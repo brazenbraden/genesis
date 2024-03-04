@@ -24,6 +24,7 @@ install_service zsh
 
 # Copy across my gitconfig
 rm -f $HOME/.gitconfig && ln -s $(pwd)/configs/.gitconfig $HOME/.gitconfig
+rm -f $HOME/.gitattributes && ln -s $(pwd)/configs/git/.gitattributes $HOME/.gitattributes
 
 # Copy git scripts
 ln $(pwd)/configs/git $HOME/.git_scripts
