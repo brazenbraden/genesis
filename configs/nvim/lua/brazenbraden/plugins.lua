@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
+    tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
@@ -57,8 +57,19 @@ local plugins = {
   'thoughtbot/vim-rspec',
   'tpope/vim-dispatch',             -- spec runner
 
-  -- Git
+  -- AI
   'github/copilot.vim',
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken" -- linux only
+  },
+  'robitx/gp.nvim',
+
+  -- Git
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   {
@@ -103,6 +114,25 @@ local plugins = {
 
   -- colorscheme
   'folke/tokyonight.nvim',
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  }
 }
 
 local opts = {}

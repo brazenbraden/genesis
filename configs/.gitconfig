@@ -65,8 +65,8 @@
   shrstag = !~/.git_scripts/shrstag.sh
 
 [user]
-  name = Sausage King
-  email = sausage@example.com
+  name = Braden King
+  email = braden@brazenbraden.com
 
 [core]
 	excludesFile = ~/.gitignore

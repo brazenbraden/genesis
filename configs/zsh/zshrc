@@ -1,7 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
+
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
@@ -63,12 +63,7 @@ alias cls="clear"
 alias dc="docker compose"
 alias ll="ls -lAh"
 
-export PATH="$PATH:/opt/yarn-1.13.0/bin:/usr/local/bin:/usr/local/sbin"
-export PATH=$PATH:/usr/local/Cellar/node/13.6.0/bin
-. "$HOME/.cargo/env"
-
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
 
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
@@ -88,9 +83,6 @@ alias cop="gh copilot explain"
 # sudo apt install bat
 alias cat="batcat"
 
-source ~/genesis/configs/zsh/.zshrc.bigsofa
-source ~/genesis/configs/zsh/.zshrc.jugglebee
-
 set -o vi
 
 # -------------------
@@ -100,4 +92,16 @@ alias dc="docker compose"
 alias docker_prune="docker rmi $(docker images --filter dangling=true -q --no-trunc)"
 # -------------------
 
-eval "$(rbenv init -)"
+# RBENV CONFIG
+# --------------------
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
+# --------------------
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -51,9 +51,14 @@ keymap("n", "<C-Left>", ":tabprev<CR>")
 keymap("n", "<C-Right>", ":tabnext<CR>")
 keymap("n", "<S-Q>", ":tabclose<CR>")
 
+-- Display git history for ruby method under the cursor
+keymap("n", "gl", ":G log -L :<C-r><C-w>:%:p<CR>")
+
+-- GitHub Copilot
+keymap("n", "<Leader>cc", ":CopilotChatToggle<CR>")
+
+
 -- INSERT mode keymaps
 -- Ctrl + q escapes back to NORMAL mode (esc button too far for my fingers)
 keymap("i", "<C-q>", "<Esc>")
 
--- Display git history for ruby method under the cursor
-keymap("n", "gl", ":G log -L :<C-r><C-w>:%:p<CR>")
