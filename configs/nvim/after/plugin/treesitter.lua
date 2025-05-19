@@ -27,6 +27,10 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 
+  -- endwise = {
+  --   enable = true,
+  -- },
+
   indent = {
     enable = true
   },

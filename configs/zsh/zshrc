@@ -78,6 +78,7 @@ alias vi="nvim"
 alias tm="~/.bin/tm"
 alias mux="tmuxinator"
 alias dev="cd ~/dev"
+alias jb="cd ~/dev/brazenbraden/jugglebee"
 alias cop="gh copilot explain"
 
 # sudo apt install bat
@@ -96,7 +97,7 @@ alias docker_prune="docker rmi $(docker images --filter dangling=true -q --no-tr
 # --------------------
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+eval "$(rbenv init -)"
 # --------------------
 
 eval "$(ssh-agent -s)"
@@ -105,3 +106,7 @@ ssh-add ~/.ssh/id_rsa
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

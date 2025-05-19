@@ -8,4 +8,4 @@ sudo apt-get install -y tmux
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-ln -s ~/genesis/configs/.tmux.conf ~/.tmux.conf
+ln -s $(pwd)/configs/.tmux.conf ~/.tmux.conf

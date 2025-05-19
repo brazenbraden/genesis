@@ -52,7 +52,7 @@ local plugins = {
   -- Ruby / RoR
   'vim-ruby/vim-ruby',
   'tpope/vim-rails',
-  'RRethy/nvim-treesitter-endwise', -- auto end code blocks
+  -- 'RRethy/nvim-treesitter-endwise', -- auto end code blocks
   'jgdavey/vim-blockle',            -- swap between do and {} blocks
   'thoughtbot/vim-rspec',
   'tpope/vim-dispatch',             -- spec runner
